@@ -35,20 +35,22 @@ class _HomePageState extends State<HomePage> {
         title: const Text("USERS"),
       ),
       body: FutureBuilder(
-          future: _fecthApi.fetchUsers(),
-          builder: (context, snapshot) {
-            return ListView.builder(
-                itemCount: user.length,
-                itemBuilder: (context, index) {
-                  return CardForm(
-                    name: user[index].name,
-                    id: user[index].id,
-                    email: user[index].email,
-                    address: user[index].address.geo.lat,
-                    address1: user[index].address.geo.lng,
-                  );
-                });
-          }),
+        future: _fecthApi.fetchUsers(),
+        builder: (context, snapshot) {
+          return ListView.builder(
+            itemCount: user.length,
+            itemBuilder: (context, index) {
+              return CardForm(
+                name: user[index].name,
+                id: user[index].id,
+                email: user[index].website,
+                address: user[index].address.geo.lat,
+                address1: user[index].address.geo.lng,
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

@@ -8,18 +8,21 @@ class FecthApi {
     String url = "https://jsonplaceholder.typicode.com/users";
     http.Response response = await http.get(Uri.parse(url));
 
-    var dataBody = jsonDecode(response.body);
+    List<dynamic> dataBody = jsonDecode(response.body);
+
     List<Users> user = [];
     if (response.statusCode == 200) {
-      for (var item in dataBody) {
-        Users u = Users.fromJson(item);
-        user.add(u);
-      }
-      // return Users.fromJson(dataBody);
+      // for (var item in dataBody) {
+      //   Users u = Users.fromJson(item);
+      //   user.add(u);
+      // }
+
+      user = dataBody.map((e) => Users.fromJson(e)).toList();
     } else {
       print("request failed with status : ${response.statusCode}");
     }
-    print(user.length);
+
+    //print(user.length);
     return user;
   }
 }
